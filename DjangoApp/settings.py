@@ -160,7 +160,6 @@ CORS_ALLOWED_ORIGINS = [
 FILE_UPLOAD_PERMISSIONS=0o640
 
 #DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
 AWS_ACCESS_KEY_ID = 'xxxxxxxxxxxxx'
 AWS_SECRET_ACCESS_KEY = 'xxxxxxxxxxxx'
 AWS_STORAGE_BUCKET_NAME = 'hpfolio-upload-bucket'
