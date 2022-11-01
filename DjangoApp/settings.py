@@ -9,6 +9,19 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print("#############################################")
+print("BASE_DIR:", BASE_DIR)
+print("POSTGRES_HOST:", env('POSTGRES_HOST'))
+print("POSTGRES_DB:", env('POSTGRES_DB'))
+print("POSTGRES_USER:", env('POSTGRES_USER'))
+print("POSTGRES_PASSWORD:", env('POSTGRES_PASSWORD'))
+print("FRONTEND_URL:", env('FRONTEND_URL'))
+print("AWS_ACCESS_KEY_ID:", env('AWS_ACCESS_KEY_ID'))
+print("AWS_SECRET_ACCESS_KEY:", env('AWS_SECRET_ACCESS_KEY'))
+print("AWS_STORAGE_BUCKET_NAME:", env('AWS_STORAGE_BUCKET_NAME'))
+print("AWS_QUERYSTRING_AUTH:", env('AWS_QUERYSTRING_AUTH'))
+print("DEBUG:", env('DEBUG'))
+print("#############################################")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -17,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@-(ajmkb$c&g3s^-w5#but_zwobjb(j!pcaya%!1d@!#vtqit2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['139.144.148.122',
                  'localhost',
@@ -33,10 +46,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # 3rd party
+    'rest_framework',
+    'corsheaders',
+
+    # Local
+    'about',
+    'projects',
+    'technologies',
+    'contact',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
