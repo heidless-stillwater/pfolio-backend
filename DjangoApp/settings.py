@@ -21,6 +21,7 @@ print("AWS_SECRET_ACCESS_KEY:", env('AWS_SECRET_ACCESS_KEY'))
 print("AWS_STORAGE_BUCKET_NAME:", env('AWS_STORAGE_BUCKET_NAME'))
 print("AWS_QUERYSTRING_AUTH:", env('AWS_QUERYSTRING_AUTH'))
 print("DEBUG:", env('DEBUG'))
+print("PORT:", env('PORT'))
 print("#############################################")
 
 # Quick-start development settings - unsuitable for production
@@ -34,6 +35,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['139.144.148.122',
                  'localhost',
+                 '127.0.0.1'
 ]
 
 
@@ -108,12 +110,10 @@ DATABASES = {
         'USER': env('POSTGRES_USER'),
         'PASSWORD': env('POSTGRES_PASSWORD'),
         'HOST': env('POSTGRES_HOST'),
-        'PORT': '', # leave blank so the default port is selected
+        'PORT': env('PORT'), # leave blank so the default port is selected
 #        'PORT': '', # leave blank so the default port is selected
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
