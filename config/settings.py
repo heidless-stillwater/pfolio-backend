@@ -88,6 +88,7 @@ INSTALLED_APPS = [
 
     # Local
     'about',
+    'app',
     'projects',
     'technologies',
     'contact',
