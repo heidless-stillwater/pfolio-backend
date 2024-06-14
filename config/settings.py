@@ -16,7 +16,6 @@ env_file = os.path.join(BASE_DIR, 'config/.env')
 
 print("checking for local ENV: " + env_file)
 
-
 if os.path.isfile(env_file):
     # read a local .env file
     env.read_env(env_file)
@@ -41,7 +40,7 @@ else:
 # #load_dotenv()  # take environment variables from .env.
 
 FRONTEND_URL=os.getenv('FRONTEND_URL').rstrip("/")
-print(f"\nFRONTEND_URL::{FRONTEND_URL}")
+# print(f"\nFRONTEND_URL::{FRONTEND_URL}")
 
 CORS_ALLOWED_ORIGINS = [
     FRONTEND_URL
@@ -51,7 +50,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG=os.getenv('DEBUG')
-print("DEBUG::", DEBUG)
+# print("DEBUG::", DEBUG)
 
 APPENGINE_URL = env('APPENGINE_URL', default=None)
 if APPENGINE_URL:
@@ -88,6 +87,7 @@ INSTALLED_APPS = [
 
     # Local
     'about',
+    'apps',
     'projects',
     'technologies',
     'contact',
