@@ -12,3 +12,4 @@ class ExampleAdmin(admin.ModelAdmin):
 
 admin.site.register(Example, ExampleAdmin)
 admin.site.register(ExampleTag)
+

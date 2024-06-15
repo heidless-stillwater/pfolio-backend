@@ -9,7 +9,7 @@ class ExampleTagSerializer(serializers.ModelSerializer):
 
 
 class ExampleSerializer(serializers.ModelSerializer):
-    tags = ExampleTagSerializer(many=True)
+    exampletags = ExampleTagSerializer(many=True)
 
     class Meta:
         model = Example
