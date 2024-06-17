@@ -87,6 +87,7 @@ INSTALLED_APPS = [
 
     # Local
     'about',
+    'showcases',
     'examples',
     'projects',
     'technologies',
@@ -186,7 +187,7 @@ from google.oauth2 import service_account
 # storage
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'config/heidless-pfolio-3-a122987830a7.json')
+    os.path.join(BASE_DIR, 'config/heidless-pfolio-3-a3ced1bada6c.json')
 )
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
