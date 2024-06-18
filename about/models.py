@@ -2,8 +2,8 @@ from django.db import models
 
 
 class About(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.CharField(max_length=250)
+    title = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
     icon = models.CharField(max_length=30)  # Material Icon name
 
     class Meta:
