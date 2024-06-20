@@ -28,7 +28,7 @@ elif os.environ.get('GOOGLE_CLOUD_PROJECT', None):
     
     client = secretmanager.SecretManagerServiceClient()
     
-    settings_name = os.environ.get('SETTINGS_NAME', 'heidless-pfolio-3-backend-secret')
+    settings_name = os.environ.get('SETTINGS_NAME', 'heidless-pfolio-5-backend-secret')
     
     name = f'projects/{project_id}/secrets/{settings_name}/versions/latest'
     payload = client.access_secret_version(name=name).payload.data.decode('UTF-8')
@@ -191,17 +191,17 @@ from google.oauth2 import service_account
 # storage
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'config/heidless-pfolio-3-a3ced1bada6c.json')
+    os.path.join(BASE_DIR, 'config/heidless-pfolio-5-5eb54d7aa01f.json')
 )
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-GS_BUCKET_NAME = 'heidless-pfolio-3-bucket'
+GS_BUCKET_NAME = 'heidless-pfolio-5-bucket'
 
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 #STATIC_URL = '/static/'
-STATIC_URL = 'https://storage.cloud.google.com/heidless-pfolio-1-bucket/'
+STATIC_URL = 'https://storage.cloud.google.com/heidless-pfolio-5-bucket/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
