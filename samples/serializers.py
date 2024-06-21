@@ -13,4 +13,4 @@ class SampleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sample
-        fields = ('name', 'description', 'link', 'image', 'tags')
+        fields = ('name', 'description', 'link', 'blog', 'image', 'tags')

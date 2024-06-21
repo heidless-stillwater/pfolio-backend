@@ -12,6 +12,7 @@ class Sample(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     link = models.CharField(max_length=250)
+    blog = models.CharField(max_length=250, default='https://www.amazon.co.uk/')
     image = models.ImageField(upload_to='images')
     tags = models.ManyToManyField(Tag)
 
