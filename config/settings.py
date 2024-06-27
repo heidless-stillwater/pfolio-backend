@@ -95,6 +95,7 @@ INSTALLED_APPS = [
     'examples',
     'projects',
     'technologies',
+    'datasciences',
     'contact',
     'hero',
     'footer',
