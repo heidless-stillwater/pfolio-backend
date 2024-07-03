@@ -13,4 +13,5 @@ class DemoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Demo
-        fields = ('name', 'description', 'link', 'blog', 'image', 'tags')
+        fields = ('name', 'description', 'link', 'blog', 'git', 'image', 'tags')
+
