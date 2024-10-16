@@ -30,7 +30,7 @@ idna==3.4
 jmespath==1.0.1
 npm==0.1.1
 optional-django==0.1.0
-Pillow==9.2.0
+Pillow==10.4.0
 pipenv==2022.10.12
 platformdirs==2.5.2
 proto-plus==1.23.0

@@ -24,23 +24,26 @@ elif os.environ.get('GOOGLE_CLOUD_PROJECT', None):
     # pull .env definitions from Secret Manager
     project_id = os.environ.get('GOOGLE_CLOUD_PROJECT')
     
-    print(f'Using Google SECRETS:{project_id}-secret')
+    print(f'Using Google SECRETS: pfolio_settings')
     
     client = secretmanager.SecretManagerServiceClient()
     
-    settings_name = os.environ.get('SETTINGS_NAME', 'heidless-pfolio-6-backend-secret')
+    settings_name = os.environ.get('SETTINGS_NAME', 'pfolio_settings')
     
     name = f'projects/{project_id}/secrets/{settings_name}/versions/latest'
     payload = client.access_secret_version(name=name).payload.data.decode('UTF-8')
 
     env.read_env(io.StringIO(payload))
+    print(f'loaded: pfolio_settings')
+
+    
 else:
     raise Exception('No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.')
 
 # #load_dotenv()  # take environment variables from .env.
 
 FRONTEND_URL=os.getenv('FRONTEND_URL').rstrip("/")
-# print(f"\nFRONTEND_URL::{FRONTEND_URL}")
+# print(f"\nFRONTEND_URL::{FRONTEND_URL}")  
 
 CORS_ALLOWED_ORIGINS = [
     FRONTEND_URL
@@ -69,7 +72,7 @@ DATABASES = {'default': env.db()}
 # If the flag as been set, configure to use proxy
 if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
     DATABASES["default"]["HOST"] = "127.0.0.1"
-    DATABASES["default"]["PORT"] = 1234
+    DATABASES["default"]["PORT"] = 5432
     
 # Application definition
 
@@ -192,18 +195,17 @@ from google.oauth2 import service_account
 # storage
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'config/heidless-pfolio-6-5dbde8c3238f.json')
+    os.path.join(BASE_DIR, 'config/pfolio-backend-3-4ff0348e81c6.json')
 )
-
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-GS_BUCKET_NAME = 'heidless-pfolio-6-bucket'
+GS_BUCKET_NAME = 'heidless-pfolio-bucket-1'
 
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 #STATIC_URL = '/static/'
-STATIC_URL = 'https://storage.cloud.google.com/heidless-pfolio-6-bucket/'
+STATIC_URL = 'https://storage.cloud.google.com/heidless-pfolio-bucket-1/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
