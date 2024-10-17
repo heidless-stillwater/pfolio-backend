@@ -196,17 +196,18 @@ from google.oauth2 import service_account
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     # use HEIDLESS_sCREDENTIAL=heidless-portfolio-1-250a11540b7d.json
-    os.path.join(BASE_DIR, 'config/heidless-portfolio-1-250a11540b7d.json')
+    # os.path.join(BASE_DIR, 'config/heidless-portfolio-1-250a11540b7d.json')
+    os.path.join(BASE_DIR, 'config/heidless-portfolio-4-1bd52a699700.json')
 )
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-GS_BUCKET_NAME = 'heidless-pfolio-bucket-2'
+GS_BUCKET_NAME = 'heidless-pfolio-bucket-5'
 
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 #STATIC_URL = '/static/'
-STATIC_URL = 'https://storage.cloud.google.com/heidless-pfolio-bucket-2/'
+STATIC_URL = 'https://storage.cloud.google.com/heidless-pfolio-bucket-5/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
