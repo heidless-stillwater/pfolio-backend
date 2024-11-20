@@ -23,18 +23,15 @@ if os.path.isfile(env_file):
 elif os.environ.get('GOOGLE_CLOUD_PROJECT', None):
     # pull .env definitions from Secret Manager
     project_id = os.environ.get('GOOGLE_CLOUD_PROJECT')
-    
-    print(f'Using Google SECRETS: pfolio_settings')
-    
+    secret_id = os.environ.get('GCP_SECRET_NAME')
+    version_id = 1
+        
     client = secretmanager.SecretManagerServiceClient()
-    
-    settings_name = os.environ.get('SETTINGS_NAME', 'pfolio_settings')
-    
+    settings_name = os.environ.get('GCP_SECRET_NAME', 'pfolio-backend-secret-0')
     name = f'projects/{project_id}/secrets/{settings_name}/versions/latest'
     payload = client.access_secret_version(name=name).payload.data.decode('UTF-8')
-
+    
     env.read_env(io.StringIO(payload))
-    print(f'loaded: pfolio_settings')
 
     
 else:
@@ -192,22 +189,19 @@ STATICFILES_DIRS = [
 ]
 
 from google.oauth2 import service_account
-# storage
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    # use HEIDLESS_sCREDENTIAL=heidless-portfolio-1-250a11540b7d.json
-    # os.path.join(BASE_DIR, 'config/heidless-portfolio-1-250a11540b7d.json')
-    os.path.join(BASE_DIR, 'config/heidless-portfolio-4-1bd52a699700.json')
+    os.path.join(BASE_DIR, 'config/h-pfolio-5bed07c9d6bc.json')
 )
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-GS_BUCKET_NAME = 'heidless-pfolio-bucket-5'
+GS_BUCKET_NAME = 'pfolio-backend-bucket-6'
 
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 #STATIC_URL = '/static/'
-STATIC_URL = 'https://storage.cloud.google.com/heidless-pfolio-bucket-5/'
+STATIC_URL = 'https://storage.cloud.google.com/pfolio-backend-bucket-6/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
