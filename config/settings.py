@@ -14,24 +14,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(DEBUG=(bool, False))
 env_file = os.path.join(BASE_DIR, 'config/.env')
 
-# print("checking for local ENV: " + env_file)
-
 if os.path.isfile(env_file):
     # read a local .env file
+    print("reading from local ENV file")
     env.read_env(env_file)
-
 elif os.environ.get('GOOGLE_CLOUD_PROJECT', None):
     # pull .env definitions from Secret Manager
     project_id = os.environ.get('GOOGLE_CLOUD_PROJECT')
+    # print(f"project_id: {project_id}")
     secret_id = os.environ.get('GCP_SECRET_NAME')
     version_id = 1
     client = secretmanager.SecretManagerServiceClient()
-    settings_name = os.environ.get('GCP_SECRET_NAME', 'pfolio-backend-secret-0')
-    name = f'projects/{project_id}/secrets/{settings_name}/versions/latest'
+    # print(f"client: {client}")
+    secret_name = os.environ.get('GCP_SECRET_NAME', 'pfolio-backend-secret-0')
+    # print(f"secret_name: {secret_name}")
+    name = f'projects/{project_id}/secrets/{secret_name}/versions/latest'
     payload = client.access_secret_version(name=name).payload.data.decode('UTF-8')
     env.read_env(io.StringIO(payload))
+    # print("leaving GOOGLE_CLOUD_PROJECT")
+
 else:
     raise Exception('No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.')
+
+
 
 # #load_dotenv()  # take environment variables from .env.
 
@@ -186,8 +191,12 @@ STATICFILES_DIRS = [
 
 from google.oauth2 import service_account
 
+credentials_file = os.environ.get('GCP_CREDENTIALS')
+credentials_path = f"config/{credentials_file}"
+# print(f"credentials path: {credentials_path}")
+
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'config/h-pfolio-5bed07c9d6bc.json')
+    os.path.join(BASE_DIR, 'config/h-pfolio-f145c61c85d3.json')
 )
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
